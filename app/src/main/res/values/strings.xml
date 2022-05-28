@@ -8,4 +8,5 @@
     <string name="Edit_message1">Enter your name here</string>
     <string name="SwitchText">Switch on/off</string>
     <string name="CheckoutText">Check this out</string>
+    <string name="imageHint">national flag</string>
 </resources>

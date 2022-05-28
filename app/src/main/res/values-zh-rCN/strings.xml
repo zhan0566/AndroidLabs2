@@ -9,4 +9,5 @@
     <string name="Edit_message1">在此输入你的名字</string>
     <string name="SwitchText">转换开关 开/关</string>
     <string name="CheckoutText">选一下这个</string>
+    <string name="imageHint">国旗</string>
 </resources>
