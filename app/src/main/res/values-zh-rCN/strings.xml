@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name"> 实验2</string>
+    <string name="app_name"> 实验2_section2</string>
     <string name="ButtonText"> 点击这里</string>
     <string name="textMessage"> 看看我的图形用户界面 </string>
+    <string name="textMessage1"> 实验2 图形用户界面</string>
     <string name="toast_message">这里有更多的信息</string>
     <string name="Edit_message">在此输入</string>
+    <string name="Edit_message1">在此输入你的名字</string>
     <string name="SwitchText">转换开关 开/关</string>
     <string name="CheckoutText">选一下这个</string>
 </resources>
