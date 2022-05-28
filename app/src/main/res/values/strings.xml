@@ -1,5 +1,9 @@
-<resources>
-    <string name="app_name">Labs1</string>
-    <string name="hello_message">Hello world!</string>
-    <string name="ButtonText">I\'m a button</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name"> Lab2</string>
+    <string name="ButtonText"> Click here</string>
+    <string name="textMessage"> Look at my GUI </string>
+    <string name="toast_message">Here is more information</string>
+    <string name="Edit_message">Type here</string>
+    <string name="SwitchText">Switch on/off</string>
+    <string name="CheckoutText">Check this out</string>
 </resources>
