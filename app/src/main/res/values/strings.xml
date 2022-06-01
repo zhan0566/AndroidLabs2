@@ -2,7 +2,7 @@
     <string name="app_name"> Lab2_section2</string>
     <string name="ButtonText"> Click here</string>
     <string name="textMessage"> Look at my GUI </string>
-    <string name="textMessage1"> Lab2 GUI</string>
+    <string name="textMessage2"> Lab2 GUI</string>
     <string name="toast_message">Here is more information</string>
     <string name="Edit_message">Type here</string>
     <string name="Edit_message1">Enter your name here</string>
