@@ -23,54 +23,27 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Here is more information",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_message),Toast.LENGTH_LONG).show();
             }
         });
 
-
-
-        /**Switch swt = findViewById(R.id.switch1);
+        Switch swt = findViewById(R.id.switch1);
         swt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                Toast.makeText(getApplicationContext(),"Swith is now", Toast.LENGTH_LONG).show();
-
-
-                View parentLayout = findViewById(android.R.id.content);
-                Snackbar sb;
-                if(isChecked){
-                    Toast.makeText(getApplicationContext(),"Swith is on", Toast.LENGTH_LONG).show();
-                    swt.setBackgroundColor(Color.parseColor("#FF80DFB0"));
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Swith is off", Toast.LENGTH_LONG).show();
-                    swt.setBackgroundColor(Color.parseColor("white"));
-                }
-
-                Snackbar.make(buttonView,"Switch is now",Snackbar.LENGTH_LONG)
-                        .setAction("UNDO", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                            }
-                        });
-            }
-        });*/
-        Switch sw = (Switch) findViewById(R.id.switch1);
-        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton cb, boolean isChecked) {
                 View parentLayout = findViewById(android.R.id.content);
                 Snackbar sb;
                 if (isChecked) {
-                    sb = Snackbar.make(parentLayout, "switch is on", Snackbar.LENGTH_LONG);
+                    //sb = Snackbar.make(parentLayout, "switch is on", Snackbar.LENGTH_LONG);
+                    sb = Snackbar.make(parentLayout,getResources().getString(R.string.switchOnMessage), Snackbar.LENGTH_LONG);
+                    swt.setBackgroundColor(Color.parseColor("#FF80DFB0"));
                 }
                 else {
-                    sb = Snackbar.make(parentLayout, "switch is off", Snackbar.LENGTH_LONG);
+                    sb = Snackbar.make(parentLayout,getResources().getString(R.string.switchOffMessage), Snackbar.LENGTH_LONG);
+                    swt.setBackgroundColor(Color.parseColor("white"));
                 }
-                sb.setAction("undo", click -> cb.setChecked(!isChecked));
+                sb.setAction(getResources().getString(R.string.undoMessage), click -> cb.setChecked(!isChecked));
                 sb.show();
-
             }
         });
     }

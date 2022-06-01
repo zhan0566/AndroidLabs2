@@ -9,4 +9,7 @@
     <string name="SwitchText">Switch on/off</string>
     <string name="CheckoutText">Check this out</string>
     <string name="imageHint">national flag</string>
+    <string name= "switchOnMessage">Switch is on</string>
+    <string name= "switchOffMessage">Switch is off</string>
+    <string name= "undoMessage">Undo</string>
 </resources>
