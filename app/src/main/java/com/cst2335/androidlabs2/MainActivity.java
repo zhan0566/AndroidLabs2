@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_constraint);
-        Button btn = findViewById(R.id.button);
+        Button btn = findViewById(R.id.button2);
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Switch swt = findViewById(R.id.switch1);
+        Switch swt = findViewById(R.id.switch2);
         swt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton cb, boolean isChecked) {
