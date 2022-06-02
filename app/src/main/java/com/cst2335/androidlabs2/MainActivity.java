@@ -27,35 +27,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        /**Switch swt = findViewById(R.id.switch1);
-        swt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-                Toast.makeText(getApplicationContext(),"Swith is now", Toast.LENGTH_LONG).show();
-
-
-                View parentLayout = findViewById(android.R.id.content);
-                Snackbar sb;
-                if(isChecked){
-                    Toast.makeText(getApplicationContext(),"Swith is on", Toast.LENGTH_LONG).show();
-                    swt.setBackgroundColor(Color.parseColor("#FF80DFB0"));
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Swith is off", Toast.LENGTH_LONG).show();
-                    swt.setBackgroundColor(Color.parseColor("white"));
-                }
-
-                Snackbar.make(buttonView,"Switch is now",Snackbar.LENGTH_LONG)
-                        .setAction("UNDO", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                            }
-                        });
-            }
-        });*/
         Switch sw = (Switch) findViewById(R.id.switch1);
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
