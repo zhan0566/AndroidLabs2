@@ -3,6 +3,7 @@ package com.cst2335.androidlabs2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -41,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
             writer.apply(); //save to disk
             finish();
         });
+
+        Button btn = findViewById(R.id.start_button);
+        btn.setOnClickListener(  (  click ) ->
+        {
+            //Where you are     //where we're going
+            Intent nextPage = new Intent(MainActivity.this,  ProfileActivity.class  );
+            //Make the transition:
+            startActivity(nextPage);
+
+        } ); //OnCLickListener goes in here
 
 
 
