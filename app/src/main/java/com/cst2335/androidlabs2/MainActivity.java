@@ -40,19 +40,13 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor writer = prefs.edit();
             writer.putString("ReserveName", editEmail.getText().toString());
             writer.apply(); //save to disk
-            finish();
-        });
-
-        Button btn = findViewById(R.id.start_button);
-        btn.setOnClickListener(  (  click ) ->
-        {
-            //Where you are     //where we're going
             Intent nextPage = new Intent(MainActivity.this,  ProfileActivity.class  );
             //Make the transition:
             startActivity(nextPage);
+            nextPage.putExtra("email",editEmail.getText().toString());
 
-        } ); //OnCLickListener goes in here
-
+           // finish();
+        });
     }
 
 }
