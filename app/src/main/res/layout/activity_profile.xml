@@ -35,7 +35,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Enter your name"
+        android:hint="Enter your name"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp" />
@@ -55,7 +55,7 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Enter your email"
+        android:hint="Enter your email"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintLeft_toLeftOf="parent"/>
 

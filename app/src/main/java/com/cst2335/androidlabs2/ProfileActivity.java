@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -53,6 +54,13 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+       // Intent fromMain = getIntent();
+      //  fromMain.getStringExtra(“EditText”);
+      // emailEditText.setText( … the string from Intent extras …);
+
+
+
+
         Button back = findViewById( R.id.intent_return_button);
         back.setOnClickListener(  click ->  { finish(); } );
     }

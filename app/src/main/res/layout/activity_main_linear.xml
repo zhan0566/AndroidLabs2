@@ -31,7 +31,7 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Type your password here" />
+        android:hint="Type your password here" />
 
     <EditText
         android:id="@+id/editPassword"
