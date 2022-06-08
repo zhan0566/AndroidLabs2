@@ -53,8 +53,8 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
-        Button term = findViewById( R.id.intent_return_button);
-        term.setOnClickListener(  click ->  { finish(); } );
+        Button back = findViewById( R.id.intent_return_button);
+        back.setOnClickListener(  click ->  { finish(); } );
     }
     @Override //screen is visible but not responding
     protected void onStart() {
