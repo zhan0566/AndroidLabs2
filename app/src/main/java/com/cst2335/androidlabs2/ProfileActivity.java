@@ -54,12 +54,10 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
-       // Intent fromMain = getIntent();
-      //  fromMain.getStringExtra(“EditText”);
-      // emailEditText.setText( … the string from Intent extras …);
-
-
-
+       /** Intent fromMain = getIntent();
+        EditText email = findViewById(R.id.editTextTextPersonName4);
+        String input = fromMain.getStringExtra("email");
+        email.setText(input);*/
 
         Button back = findViewById( R.id.intent_return_button);
         back.setOnClickListener(  click ->  { finish(); } );
@@ -68,31 +66,31 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Log.d(TAG, "In functyion onStart");
+        Log.e(TAG, "In functyion onStart");
     }
 
     @Override //screen is visible but not responding
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "In function onResume");
+        Log.e(TAG, "In function onResume");
     }
 
     @Override //screen is visible but not responding
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "In function onPause");
+        Log.e(TAG, "In function onPause");
     }
 
     @Override //not visible
     protected void onStop() {
         super.onStop();
-        Log.i(TAG, "In function onStop");
+        Log.e(TAG, "In function onStop");
     }
 
     @Override  //garbage collected
     protected void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, "In function onDestroy");
+        Log.e(TAG, "In function onDestroy");
     }
 
 }

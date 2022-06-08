@@ -2,6 +2,7 @@ package com.cst2335.androidlabs2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.backup.SharedPreferencesBackupHelper;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,12 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainActivity extends AppCompatActivity {
       public final static String TAG ="MainActivity";
       public final static String PREFERENCES_FILE = "MyData";
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
