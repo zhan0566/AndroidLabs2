@@ -54,10 +54,10 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
-       /** Intent fromMain = getIntent();
+       Intent fromMain = getIntent();
         EditText email = findViewById(R.id.editTextTextPersonName4);
         String input = fromMain.getStringExtra("email");
-        email.setText(input);*/
+        email.setText(input);
 
         Button back = findViewById( R.id.intent_return_button);
         back.setOnClickListener(  click ->  { finish(); } );

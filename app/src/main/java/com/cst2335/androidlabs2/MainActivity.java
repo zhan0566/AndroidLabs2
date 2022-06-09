@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        SharedPreferences  prefs = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
+        String previous = prefs.getString("ReserveName", "Default Value");
+        TextView reverseMessage = findViewById(R.id.reserved_name);
+        reverseMessage.setText(previous);
     }
 
     @Override
@@ -35,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //Coding from here
         setContentView(R.layout.activity_main_linear);
 
-        SharedPreferences prefs = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
+       SharedPreferences prefs = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         String previous = prefs.getString("ReserveName", "Default Value");
         TextView reverseMessage = findViewById(R.id.reserved_name);
         reverseMessage.setText(previous);
