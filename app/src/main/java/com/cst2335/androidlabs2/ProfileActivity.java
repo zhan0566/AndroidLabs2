@@ -54,6 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+
        Intent fromMain = getIntent();
         EditText email = findViewById(R.id.editTextTextPersonName4);
         String input = fromMain.getStringExtra("email");

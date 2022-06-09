@@ -24,13 +24,18 @@ public class MainActivity extends AppCompatActivity {
       public final static String TAG ="MainActivity";
       public final static String PREFERENCES_FILE = "MyData";
 
+    EditText editEmail;
+
     @Override
     protected void onPause() {
         super.onPause();
         SharedPreferences  prefs = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
-        String previous = prefs.getString("ReserveName", "Default Value");
-        TextView reverseMessage = findViewById(R.id.reserved_name);
-        reverseMessage.setText(previous);
+        //String previous = prefs.getString("ReserveName", "Default Value");
+        SharedPreferences.Editor writer = prefs.edit();
+        writer.putString("ReserveName", editEmail.getText().toString());
+        writer.apply(); //save to disk
+        //TextView reverseMessage = findViewById(R.id.reserved_name);
+        //reverseMessage.setText(previous);
     }
 
     @Override
@@ -44,17 +49,21 @@ public class MainActivity extends AppCompatActivity {
         TextView reverseMessage = findViewById(R.id.reserved_name);
         reverseMessage.setText(previous);
 
-        EditText editEmail = findViewById(R.id.editEmail);
+        editEmail = findViewById(R.id.editEmail);
+
+        //TextView reverseMessage = findViewById(R.id.reserved_name);
+        //reverseMessage.setText(previous);
 
         Button login = findViewById(R.id.login);
         login.setOnClickListener(clk -> {
-            SharedPreferences.Editor writer = prefs.edit();
-            writer.putString("ReserveName", editEmail.getText().toString());
-            writer.apply(); //save to disk
+            //SharedPreferences.Editor writer = prefs.edit();
+            //writer.putString("ReserveName", editEmail.getText().toString());
+            //writer.apply(); //save to disk
             Intent nextPage = new Intent(MainActivity.this,  ProfileActivity.class  );
             //Make the transition:
-            startActivity(nextPage);
+
             nextPage.putExtra("email",editEmail.getText().toString());
+            startActivity(nextPage);
 
            // finish();
         });
