@@ -17,4 +17,15 @@
     <string name ="emailMessage2" >"在此输入邮箱" </string>
     <string name ="passwordMessage1" >"你的密码" </string>
     <string name ="login1" >"登录" </string>
+    <string name ="yourProfile">"你的文挡" </string>
+    <string name ="name">"姓名" </string>
+   <string name ="nameMessage1">"输入你的姓名" </string>
+   <string name ="emailMessage3">"你的邮箱"</string>
+   <string name ="emailMessage4">"输入你的邮箱"</string>
+   <string name ="picture1">"你的照片"</string>
+   <string name ="buttonText2">"点击按钮拍张照片"</string>
+   <string name ="buttonText3">"返回" </string>
+
+
+
 </resources>
