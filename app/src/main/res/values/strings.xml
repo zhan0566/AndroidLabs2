@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name"> Lab3</string>
-    <string name="ButtonText"> Click here</string>
+   <string name="ButtonText"> Click here</string>
     <string name="textMessage"> Look at my GUI </string>
     <string name="textMessage2"> Lab2 GUI</string>
     <string name="toast_message">Here is more information</string>
@@ -12,4 +12,10 @@
     <string name="switchOnMessage">Switch is on</string>
     <string name="switchOffMessage">Switch is off</string>
     <string name="undoMessage">Undo</string>
+    <string name ="emailMessage1" >"Enter your email address" </string>
+    <string name ="emailMessage2" >"Type email here" </string>
+    <string name ="passwordMessage1" >"Type Your password here" </string>
+    <string name ="login1" >"LOGIN" </string>
+
+
 </resources>

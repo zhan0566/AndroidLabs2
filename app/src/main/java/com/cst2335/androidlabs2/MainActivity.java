@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor writer = prefs.edit();
         writer.putString("ReserveName", editEmail.getText().toString());
         writer.apply(); //save to disk
-        //TextView reverseMessage = findViewById(R.id.reserved_name);
-        //reverseMessage.setText(previous);
     }
 
     @Override
@@ -46,22 +44,16 @@ public class MainActivity extends AppCompatActivity {
 
        SharedPreferences prefs = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         String previous = prefs.getString("ReserveName", "Default Value");
-        TextView reverseMessage = findViewById(R.id.reserved_name);
-        reverseMessage.setText(previous);
+
+       // TextView reverseMessage = findViewById(R.id.reserved_name);
+      //  reverseMessage.setText(previous);
 
         editEmail = findViewById(R.id.editEmail);
 
-        //TextView reverseMessage = findViewById(R.id.reserved_name);
-        //reverseMessage.setText(previous);
-
         Button login = findViewById(R.id.login);
         login.setOnClickListener(clk -> {
-            //SharedPreferences.Editor writer = prefs.edit();
-            //writer.putString("ReserveName", editEmail.getText().toString());
-            //writer.apply(); //save to disk
             Intent nextPage = new Intent(MainActivity.this,  ProfileActivity.class  );
             //Make the transition:
-
             nextPage.putExtra("email",editEmail.getText().toString());
             startActivity(nextPage);
 
