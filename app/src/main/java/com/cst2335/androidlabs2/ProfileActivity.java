@@ -55,19 +55,29 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-       Intent fromMain = getIntent();
+        Intent fromMain = getIntent();
         EditText email = findViewById(R.id.editTextTextPersonName4);
         String input = fromMain.getStringExtra("email");
         email.setText(input);
 
         Button back = findViewById( R.id.intent_return_button);
         back.setOnClickListener(  click ->  { finish(); } );
+
+        Button chatButton = findViewById(R.id.chat_button);
+        chatButton.setOnClickListener(clk -> {
+            Intent nextPage = new Intent(ProfileActivity.this,  ChatRoomActivity.class  );
+
+            startActivity(nextPage);
+
+            // finish();
+        });
+
     }
     @Override //screen is visible but not responding
     protected void onStart() {
         super.onStart();
 
-        Log.e(TAG, "In functyion onStart");
+         Log.e(TAG, "In functyion onStart");
     }
 
     @Override //screen is visible but not responding

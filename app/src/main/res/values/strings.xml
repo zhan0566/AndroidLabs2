@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name"> Lab3</string>
-   <string name="ButtonText"> Click here</string>
+    <string name="ButtonText"> Click here</string>
     <string name="textMessage"> Look at my GUI </string>
     <string name="textMessage2"> Lab2 GUI</string>
     <string name="toast_message">Here is more information</string>
@@ -12,20 +12,18 @@
     <string name="switchOnMessage">Switch is on</string>
     <string name="switchOffMessage">Switch is off</string>
     <string name="undoMessage">Undo</string>
-    <string name ="emailMessage1" >"Enter your email address" </string>
-    <string name ="emailMessage2" >"Type email here" </string>
-    <string name ="passwordMessage1">"Type Your password here" </string>
-    <string name ="login1">"LOGIN" </string>
-    <string name ="yourProfile">"Your profile" </string>
-    <string name ="name">"Your name" </string>
-    <string name ="nameMessage1">"Enter your name" </string>
-    <string name ="emailMessage3">"Your email" </string>
-    <string name ="emailMessage4">"Enter your email" </string>
-    <string name ="picture1">"Your picture" </string>
-     <string name ="buttonText2">""Click the button above to take a picture"" </string>
-     <string name ="buttonText3">"back" </string>
-
-
-
+    <string name="emailMessage1">"Enter your email address" </string>
+    <string name="emailMessage2">"Type email here" </string>
+    <string name="passwordMessage1">"Type Your password here" </string>
+    <string name="login1">"LOGIN" </string>
+    <string name="yourProfile">"Your profile" </string>
+    <string name="name">"Your name" </string>
+    <string name="nameMessage1">"Enter your name" </string>
+    <string name="emailMessage3">"Your email" </string>
+    <string name="emailMessage4">"Enter your email" </string>
+    <string name="picture1">"Your picture" </string>
+    <string name="buttonText2">""Click the button above to take a picture"" </string>
+    <string name="buttonText3">"back" </string>
+    <string name="chatButton"> "Go to Chat“</string>
 
 </resources>

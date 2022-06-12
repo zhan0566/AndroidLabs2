@@ -25,6 +25,7 @@
    <string name ="picture1">"你的照片"</string>
    <string name ="buttonText2">"点击按钮拍张照片"</string>
    <string name ="buttonText3">"返回" </string>
+    <string name="chatButton"> "去聊天“</string>
 
 
 

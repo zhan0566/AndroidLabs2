@@ -23,14 +23,12 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainActivity extends AppCompatActivity {
       public final static String TAG ="MainActivity";
       public final static String PREFERENCES_FILE = "MyData";
-
-    EditText editEmail;
+      EditText editEmail;
 
     @Override
     protected void onPause() {
         super.onPause();
         SharedPreferences  prefs = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
-        //String previous = prefs.getString("ReserveName", "Default Value");
         SharedPreferences.Editor writer = prefs.edit();
         writer.putString("ReserveName", editEmail.getText().toString());
         writer.apply(); //save to disk
