@@ -25,5 +25,8 @@
     <string name="buttonText2">""Click the button above to take a picture"" </string>
     <string name="buttonText3">"back" </string>
     <string name="chatButton"> "Go to Chat“</string>
-
+    <string name="sendButton"> "Send" </string>
+    <string name="receiveButton"> "Receive" </string>
+    <string name="sendMessage"> "send Message goes here" </string>
+    <string name="receiveMessage"> "receive message goes here" </string>
 </resources>

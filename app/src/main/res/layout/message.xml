@@ -11,7 +11,7 @@
         android:drawableLeft="@drawable/row_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="send Message goes here"/>
+        android:hint="@string/sendMessage"/>
 
 
     <TextView
@@ -21,6 +21,6 @@
         android:drawableRight="@drawable/row_receive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="receive message goes here" />
+        android:hint="@string/receiveMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

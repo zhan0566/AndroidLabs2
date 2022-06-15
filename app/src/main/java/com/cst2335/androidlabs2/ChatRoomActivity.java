@@ -47,7 +47,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             String whatIsTyped = edit.getText().toString();
             //adding a new message to our history if not empty
             if ( !whatIsTyped.isEmpty()) {
-                messages.add(new Message(whatIsTyped));
+                messages.add(new Message(whatIsTyped,true));
                // messages.add(new Message(whatIsTyped, currentDateandTime));
 
                 edit.setText("");//clear the text
@@ -61,20 +61,17 @@ public class ChatRoomActivity extends AppCompatActivity {
             String whatIsTyped = edit.getText().toString();
             //adding a new message to our history if not empty
             if ( !whatIsTyped.isEmpty()) {
-                messages.add(new Message(whatIsTyped));
+                messages.add(new Message(whatIsTyped,false));
                 // messages.add(new Message(whatIsTyped, currentDateandTime));
-
                 edit.setText("");//clear the text
 
                 //notify that new data was added at a row:
                 theAdapter.notifyItemInserted(messages.size() - 1); //at the end of ArrayList,
-
             }
         });
 
         Button back = findViewById( R.id.backButton);
         back.setOnClickListener(  click ->  { finish(); } );
-
     }
 
     public class MyAdapter extends RecyclerView.Adapter< MyViewHolder > {
@@ -112,9 +109,12 @@ public class ChatRoomActivity extends AppCompatActivity {
             Message thisRow = messages.get(position);//
 
             //                      String object:
-          //  holder.timeView.setText( thisRow.getTimeSent() );//what time goes on row position
-            holder.messageView.setText( thisRow.getMessageTyped() );//what message goes on row position
-            holder.receiveView.setText( thisRow.getMessageTyped() );
+            //  holder.timeView.setText( thisRow.getTimeSent() );//what time goes on row position
+            if (thisRow.getIsSend()) {
+                holder.messageView.setText(thisRow.getMessageTyped());//what message goes on row position
+            } else {
+                holder.receiveView.setText(thisRow.getMessageTyped()); //what message goes on row position
+            }
         }
 
         //returns the number of items in the array
@@ -157,18 +157,19 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     public class Message{
-        String messageTyped;
-       // String timeSent;
-        public Message(String messageTyped) {
+        private String messageTyped;
+        private Boolean isSend;
+        public Message(String messageTyped , boolean isSend) {
        // public Message(String messageTyped, String timeSent) {
             this.messageTyped = messageTyped;
+            this.isSend = isSend;
            // this.timeSent = timeSent;
         }
 
         public String getMessageTyped() {
             return messageTyped;
         }
-
+        public boolean getIsSend(){return isSend;}
        // public String getTimeSent() {return timeSent;}
     }
 

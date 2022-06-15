@@ -26,7 +26,9 @@
    <string name ="buttonText2">"点击按钮拍张照片"</string>
    <string name ="buttonText3">"返回" </string>
     <string name="chatButton"> "去聊天“</string>
-
-
+    <string name="sendButton"> "发送" </string>
+    <string name="receiveButton"> "收到" </string>
+    <string name="sendMessage"> "发送的信息" </string>
+    <string name="receiveMessage"> "收到的信息" </string>
 
 </resources>
