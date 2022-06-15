@@ -72,6 +72,9 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
         });
 
+        Button back = findViewById( R.id.backButton);
+        back.setOnClickListener(  click ->  { finish(); } );
+
     }
 
     public class MyAdapter extends RecyclerView.Adapter< MyViewHolder > {

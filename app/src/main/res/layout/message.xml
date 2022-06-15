@@ -18,7 +18,7 @@
         android:id="@+id/receiveMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sendMessage"
-        android:drawableLeft="@drawable/row_receive"
+        android:drawableRight="@drawable/row_receive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="receive message goes here" />
