@@ -21,6 +21,7 @@ import java.util.Locale;
 
 public class ChatRoomActivity extends AppCompatActivity {
     Button submit;
+    Button receive;
     EditText edit;
     RecyclerView rView;
     MyAdapter theAdapter;   //<<cannot be anonymous<<
@@ -28,8 +29,10 @@ public class ChatRoomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //load XML
         setContentView(R.layout.activity_chat_room);
 
+        receive =findViewById(R.id.receiveButton);
         submit = findViewById(R.id.submitButton);
         edit = findViewById(R.id.editText);
         rView = findViewById(R.id.myRecycleView);
@@ -42,15 +45,10 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         submit.setOnClickListener( click ->{
             String whatIsTyped = edit.getText().toString();
-            Date timeNow = new Date(); //when was this code run
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-
-            String currentDateandTime = sdf.format( timeNow ); //convert date to String
-
             //adding a new message to our history if not empty
             if ( !whatIsTyped.isEmpty()) {
-                messages.add(new Message(whatIsTyped, currentDateandTime));
+                messages.add(new Message(whatIsTyped));
+               // messages.add(new Message(whatIsTyped, currentDateandTime));
 
                 edit.setText("");//clear the text
 
@@ -59,7 +57,20 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             }
         });
+        receive.setOnClickListener( click ->{
+            String whatIsTyped = edit.getText().toString();
+            //adding a new message to our history if not empty
+            if ( !whatIsTyped.isEmpty()) {
+                messages.add(new Message(whatIsTyped));
+                // messages.add(new Message(whatIsTyped, currentDateandTime));
 
+                edit.setText("");//clear the text
+
+                //notify that new data was added at a row:
+                theAdapter.notifyItemInserted(messages.size() - 1); //at the end of ArrayList,
+
+            }
+        });
 
     }
 
@@ -98,8 +109,9 @@ public class ChatRoomActivity extends AppCompatActivity {
             Message thisRow = messages.get(position);//
 
             //                      String object:
-            holder.timeView.setText( thisRow.getTimeSent() );//what time goes on row position
+          //  holder.timeView.setText( thisRow.getTimeSent() );//what time goes on row position
             holder.messageView.setText( thisRow.getMessageTyped() );//what message goes on row position
+            holder.receiveView.setText( thisRow.getMessageTyped() );
         }
 
         //returns the number of items in the array
@@ -111,14 +123,16 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     //this holds TextViews on a row:
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView timeView;
+      //  TextView timeView;
         TextView messageView;
+        TextView receiveView;
 
         //View will be a ConstraintLayout
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            timeView = itemView.findViewById(R.id.receiveMessage);
+            receiveView = itemView.findViewById(R.id.receiveMessage);
+          //timeView = itemView.findViewById(R.id.receiveMessage);
             messageView = itemView.findViewById(R.id.sendMessage);
 
             itemView.setOnClickListener( click -> {
@@ -141,26 +155,18 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     public class Message{
         String messageTyped;
-        String timeSent;
-
-        public Message(String messageTyped, String timeSent) {
+       // String timeSent;
+        public Message(String messageTyped) {
+       // public Message(String messageTyped, String timeSent) {
             this.messageTyped = messageTyped;
-            this.timeSent = timeSent;
+           // this.timeSent = timeSent;
         }
 
         public String getMessageTyped() {
             return messageTyped;
         }
 
-        public String getTimeSent() {
-            return timeSent;
-        }
+       // public String getTimeSent() {return timeSent;}
     }
-
-
-
-
-
-
 
 }

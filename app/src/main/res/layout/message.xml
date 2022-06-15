@@ -10,7 +10,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="send Message goes here"/>
+        android:hint="send Message goes here"/>
 
 
     <TextView
@@ -19,6 +19,6 @@
         app:layout_constraintTop_toBottomOf="@+id/sendMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="receive message goes here" />
+        android:hint="receive message goes here" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
