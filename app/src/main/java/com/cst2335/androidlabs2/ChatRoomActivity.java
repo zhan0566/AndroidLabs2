@@ -54,6 +54,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                // messages.add(new Message(whatIsTyped, currentDateandTime))
 
                 //notify that new data was added at a row:
+
                 theAdapter.notifyDataSetChanged(); //at the end of ArrayList,
                 edit.setText("");//clear the text
 
@@ -67,6 +68,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 // messages.add(new Message(whatIsTyped, currentDateandTime))
 
                 //notify that new data was added at a row:
+
                 theAdapter.notifyDataSetChanged(); //at the end of ArrayList,
                 edit.setText("");//clear the text
             }
@@ -76,21 +78,29 @@ public class ChatRoomActivity extends AppCompatActivity {
         back.setOnClickListener(  click ->  { finish(); } );
 
         rView.setOnItemLongClickListener( (AdapterView<?> parent, View view, int position, long id) -> {
+            //Message whatWasClicked = messages.get(position);
+
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Do you want to delete this?")
+
+            alertDialogBuilder.setTitle(R.string.delete)
 
                     //What is the message:
-                    .setMessage("The selected row is " + position + "\n" +
-                            "The database id is: " + id)
+                    // .setMessage("The selected row is " + whatWasClicked.getMessageTyped() + "\n" +
+                      // "The database id is: " + id)
+                   .setMessage(R.string.rowSelected + position + "\n" +
+                            R.string.idSelected + id)
 
                     //what the Yes button does:
-                    .setPositiveButton("Yes", (click, arg) -> {
-                        messages.remove(position);
-                        theAdapter.notifyDataSetChanged();
+                    //.setPositiveButton("Positive",(dialog,click1)->{
+                    //.setPositiveButton(getString(R.string.positive), (click, arg) -> {
+                   .setPositiveButton("R.string.positive", (click1, arg) -> {
+                       messages.remove(position);
+                       theAdapter.notifyDataSetChanged();
                     })
                     //What the No button does:
-                    .setNegativeButton("No", (click, arg) -> { })
-
+                    //.setNegativeButton("Negative",(dialog,click1) -> { })
+                    .setNegativeButton("R.string.negative", (click2, arg) -> { })
+                   // .setNegativeButton(getString(R.string.negative), (click, arg) -> { })
 
                     //You can add extra layout elements:
                     .setView(getLayoutInflater().inflate(R.layout.row_layout, null) )
@@ -101,67 +111,4 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-    //this holds TextViews on a row:
-//    public class MyViewHolder extends ListView.ViewHolder{
-//      //  TextView timeView;
-//        TextView messageView;
-//        TextView receiveView;
-//
-//        //View will be a ConstraintLayout
-//        public MyViewHolder(View itemView) {
-//            super(itemView);
-//
-//            receiveView = itemView.findViewById(R.id.receiveMessage);
-//          //timeView = itemView.findViewById(R.id.receiveMessage);
-//            messageView = itemView.findViewById(R.id.sendMessage);
-//
-//            itemView.setOnClickListener( click -> {
-//                int position = getAdapterPosition();//which row was clicked.
-//                Message whatWasClicked = messages.get(position);
-//
-//                AlertDialog.Builder builder = new AlertDialog.Builder( ChatRoomActivity.this );
-//
-//                builder.setTitle("Question:")
-//                        .setMessage("Do you want to delete this:" + whatWasClicked.getMessageTyped())
-//                        .setNegativeButton("Negative", (dialog, click1)->{ })
-//                        .setPositiveButton("Positive", (dialog, click2)->{
-//                            //actually delete something:
-//                            messages.remove(position);
-//                            theAdapter.notifyItemRemoved(position);
-//                        }).create().show();
-//            });
-//        }
-//    }
-    /** rView.setOnItemLongClickListener( (AdapterView<?> parent, View view, int position, long id) -> {
-     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-     alertDialogBuilder.setTitle("Make a choice")
-
-     //What is the message:
-     .setMessage("Do you want to add a row")
-
-     //what the Yes button does:
-     .setPositiveButton("Yes", (click, arg) -> {
-     elements.add("HELLO");
-     myAdapter.notifyDataSetChanged();
-     })
-     //What the No button does:
-     .setNegativeButton("No", (click, arg) -> { })
-
-     //An optional third button:
-     .setNeutralButton("Maybe", (click, arg) -> {  })
-
-     //You can add extra layout elements:
-     .setView(getLayoutInflater().inflate(R.layout.row_layout, null) )
-
-     //Show the dialog
-     .create().show();
-     return true;
-     });
-     */
-
-
-
 }

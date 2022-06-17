@@ -29,4 +29,11 @@
     <string name="receiveButton"> "Receive" </string>
     <string name="sendMessage"> "send Message goes here" </string>
     <string name="receiveMessage"> "receive message goes here" </string>
+    <string name ="negative">no </string>
+    <string name ="positive">”yes“</string>
+    <string name ="delete">Do you want to delete this?</string>
+    <string name ="rowSelected">The selected row is</string>
+    <string name ="idSelected">The database id is </string>
+
+
 </resources>

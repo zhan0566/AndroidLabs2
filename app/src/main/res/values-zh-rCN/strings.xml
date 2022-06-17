@@ -30,5 +30,13 @@
     <string name="receiveButton"> "收到" </string>
     <string name="sendMessage"> "发送的信息" </string>
     <string name="receiveMessage"> "收到的信息" </string>
+    <string name ="negative">”不删“</string>
+    <string name ="positive">”删“</string>
+    <string name ="delete">你想删除它吗?</string>
+    <string name ="rowSelected">被选的行是</string>
+    <string name ="idSelected">被选的ID是</string>
+
+
+
 
 </resources>
