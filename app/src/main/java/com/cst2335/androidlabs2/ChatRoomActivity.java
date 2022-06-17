@@ -87,19 +87,19 @@ public class ChatRoomActivity extends AppCompatActivity {
                     //What is the message:
                     // .setMessage("The selected row is " + whatWasClicked.getMessageTyped() + "\n" +
                       // "The database id is: " + id)
-                   .setMessage(R.string.rowSelected + position + "\n" +
-                            R.string.idSelected + id)
+                   .setMessage(getString(R.string.rowSelected)+ position + "\n" +
+                            getString(R.string.idSelected)+ id)
 
-                    //what the Yes button does:
+                    //what the Yes button does:123
                     //.setPositiveButton("Positive",(dialog,click1)->{
                     //.setPositiveButton(getString(R.string.positive), (click, arg) -> {
-                   .setPositiveButton("R.string.positive", (click1, arg) -> {
+                   .setPositiveButton(getString(R.string.positive), (click1, arg) -> {
                        messages.remove(position);
                        theAdapter.notifyDataSetChanged();
                     })
                     //What the No button does:
                     //.setNegativeButton("Negative",(dialog,click1) -> { })
-                    .setNegativeButton("R.string.negative", (click2, arg) -> { })
+                    .setNegativeButton(getString(R.string.negative), (click2, arg) -> { })
                    // .setNegativeButton(getString(R.string.negative), (click, arg) -> { })
 
                     //You can add extra layout elements:
