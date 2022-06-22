@@ -42,9 +42,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         theAdapter = new MyAdapter(messages, this);
         rView.setAdapter(theAdapter) ;
-        //rView.setLayoutManager(new LinearLayoutManager(this));
-        //rView.setLayoutManager(new GridLayoutManager (this, 2) );
-
 
         submit.setOnClickListener( click ->{
             String whatIsTyped = edit.getText().toString();
@@ -80,30 +77,26 @@ public class ChatRoomActivity extends AppCompatActivity {
         rView.setOnItemLongClickListener( (AdapterView<?> parent, View view, int position, long id) -> {
             //Message whatWasClicked = messages.get(position);
 
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ChatRoomActivity.this);
 
             alertDialogBuilder.setTitle(R.string.delete)
 
                     //What is the message:
-                    // .setMessage("The selected row is " + whatWasClicked.getMessageTyped() + "\n" +
-                      // "The database id is: " + id)
                    .setMessage(getString(R.string.rowSelected)+ position + "\n" +
                             getString(R.string.idSelected)+ id)
 
                     //what the Yes button does:123
-                    //.setPositiveButton("Positive",(dialog,click1)->{
-                    //.setPositiveButton(getString(R.string.positive), (click, arg) -> {
-                   .setPositiveButton(getString(R.string.positive), (click1, arg) -> {
-                       messages.remove(position);
+
+                   .setPositiveButton(getString(R.string.positive), (click, arg) -> {
+                      messages.remove(messages.size()-1);
+                      // messages.remove(position);
                        theAdapter.notifyDataSetChanged();
                     })
                     //What the No button does:
-                    //.setNegativeButton("Negative",(dialog,click1) -> { })
-                    .setNegativeButton(getString(R.string.negative), (click2, arg) -> { })
-                   // .setNegativeButton(getString(R.string.negative), (click, arg) -> { })
+                    .setNegativeButton(getString(R.string.negative), (click, arg) -> { })
 
                     //You can add extra layout elements:
-                    .setView(getLayoutInflater().inflate(R.layout.row_layout, null) )
+                   // .setView(getLayoutInflater().inflate(R.layout.row_layout, null) )
 
                     //Show the dialog
                     .create().show();

@@ -13,6 +13,7 @@ public class Message {
     }
 
     public Message(String messageTyped , boolean isSend) {
+
         this(messageTyped, isSend, 0);
     }
 

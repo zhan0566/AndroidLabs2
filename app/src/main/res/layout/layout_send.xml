@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgReceive"
         android:src="@drawable/row_receive"
-        android:layout_alignParentEnd="true"
-        />
+        android:layout_alignParentEnd="true" />
 
 
 
