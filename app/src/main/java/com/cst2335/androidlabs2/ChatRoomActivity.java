@@ -88,8 +88,8 @@ public class ChatRoomActivity extends AppCompatActivity {
                     //what the Yes button does:123
 
                    .setPositiveButton(getString(R.string.positive), (click, arg) -> {
-                      messages.remove(messages.size()-1);
-                      // messages.remove(position);
+                     // messages.remove(messages.size()-1);
+                       messages.remove(position);
                        theAdapter.notifyDataSetChanged();
                     })
                     //What the No button does:
