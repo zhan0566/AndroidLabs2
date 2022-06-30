@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,38 +21,71 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 public class ChatRoomActivity extends AppCompatActivity {
+    MyOpenHelper myOpener;
+    SQLiteDatabase  theDatabase;
     Button submit;
     Button receive;
     EditText edit;
     ListView rView;
     BaseAdapter theAdapter;   //<<cannot be anonymous<<
     ArrayList<Message> messages = new ArrayList<>();
+    public final static String TAG ="ChatRoomActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //load XML
-        setContentView(R.layout.activity_chat_room);
 
-        receive =findViewById(R.id.receiveButton);
+        //Log.i(TAG, "In onCreate, creating the objects");
+        setContentView(R.layout.activity_chat_room);
+        myOpener = new MyOpenHelper(this);
+        theDatabase = myOpener.getWritableDatabase();
+        Cursor results = theDatabase.rawQuery("Select * from " + MyOpenHelper.TABLE_NAME + ";", null);
+
+        int version = theDatabase.getVersion();
+        int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
+        int messageIndex = results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
+        int sOrRIndex = results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
+
+
+            while (results.moveToNext()) {
+                long id = results.getInt(idIndex);
+                String message = results.getString(messageIndex);
+                boolean isSend = false;
+                messages.add(new Message(message, isSend, id));
+
+            }
+
+
+        receive = findViewById(R.id.receiveButton);
         submit = findViewById(R.id.submitButton);
         edit = findViewById(R.id.editText);
         rView = findViewById(R.id.myListView);
 
         theAdapter = new MyAdapter(messages, this);
-        rView.setAdapter(theAdapter) ;
+        rView.setAdapter(theAdapter);
 
-        submit.setOnClickListener( click ->{
+        submit.setOnClickListener(click -> {
             String whatIsTyped = edit.getText().toString();
             //adding a new message to our history if not empty
-            if ( !whatIsTyped.isEmpty()) {
-                messages.add(new Message(whatIsTyped,true));
-               // messages.add(new Message(whatIsTyped, currentDateandTime))
+            if (!whatIsTyped.isEmpty()) {
+                ContentValues newRow = new ContentValues();// like intent or Bundle
+                //Message column:
+                newRow.put(MyOpenHelper.COL_MESSAGE, whatIsTyped);
+
+                //Send or receive column:
+                newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 1);
+
+                long id = theDatabase.insert(MyOpenHelper.TABLE_NAME, null, newRow);
+                messages.add(new Message(whatIsTyped, true, id));
+                // messages.add(new Message(whatIsTyped, currentDateandTime))
 
                 //notify that new data was added at a row:
 
@@ -57,11 +94,21 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             }
         });
-        receive.setOnClickListener( v ->{
+        receive.setOnClickListener(v -> {
             String whatIsTyped = edit.getText().toString();
             //adding a new message to our history if not empty
-            if ( !whatIsTyped.isEmpty()) {
-                messages.add(new Message(whatIsTyped,false));
+            if (!whatIsTyped.isEmpty()) {
+                ContentValues newRow = new ContentValues();// like intent or Bundle
+
+                //Message column:
+                newRow.put(MyOpenHelper.COL_MESSAGE, whatIsTyped);
+
+                //Send or receive column:
+                newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 1);
+
+                long id = theDatabase.insert(MyOpenHelper.TABLE_NAME, null, newRow);
+
+                messages.add(new Message(whatIsTyped, false, id));
                 // messages.add(new Message(whatIsTyped, currentDateandTime))
 
                 //notify that new data was added at a row:
@@ -71,37 +118,88 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
         });
 
-        Button back = findViewById( R.id.backButton);
-        back.setOnClickListener(  click ->  { finish(); } );
+        Button back = findViewById(R.id.backButton);
+        back.setOnClickListener(click -> {
+            finish();
+        });
 
-        rView.setOnItemLongClickListener( (AdapterView<?> parent, View view, int position, long id) -> {
-            //Message whatWasClicked = messages.get(position);
+        rView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            Message whatWasClicked = messages.get(position);
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ChatRoomActivity.this);
 
             alertDialogBuilder.setTitle(R.string.delete)
 
                     //What is the message:
-                   .setMessage(getString(R.string.rowSelected)+ position + "\n" +
-                            getString(R.string.idSelected)+ id)
+                    .setMessage(getString(R.string.rowSelected) + position + "\n" +
+                            getString(R.string.idSelected) + id)
 
-                    //what the Yes button does:123
 
-                   .setPositiveButton(getString(R.string.positive), (click, arg) -> {
-                     // messages.remove(messages.size()-1);
-                       messages.remove(position);
-                       theAdapter.notifyDataSetChanged();
+                    .setNegativeButton(getString(R.string.negative), (click, arg) -> {
                     })
-                    //What the No button does:
-                    .setNegativeButton(getString(R.string.negative), (click, arg) -> { })
 
-                    //You can add extra layout elements:
-                   // .setView(getLayoutInflater().inflate(R.layout.row_layout, null) )
+                    //what the Yes button does:
 
+                    .setPositiveButton(getString(R.string.positive), (click, arg) -> {
+                        // messages.remove(messages.size()-1);
+                        messages.remove(position);
+                        theAdapter.notifyDataSetChanged();
+                        /**Snackbar.make(submit, "You removed item # " + position, Snackbar.LENGTH_LONG)
+                                .setAction("Undo", (click4) -> {
+                                    messages.add(position, whatWasClicked);
+                                    theAdapter.notifyDataSetChanged();
+                                    //reinsert into the database
+                                    theDatabase.execSQL(String.format(" Insert into %s values (\"%d\", \"%s\", \"%d\" );",
+                                            MyOpenHelper.TABLE_NAME, whatWasClicked.getId(), whatWasClicked.getMessageTyped(), 1));
+
+                                })
+                                .show();*/
+                        //delete from database:, returns number of rows deleted
+                        theDatabase.delete(MyOpenHelper.TABLE_NAME,
+                                MyOpenHelper.COL_ID + " = ?", new String[]{Long.toString(whatWasClicked.getId())});
+                    })
                     //Show the dialog
                     .create().show();
             return true;
         });
+
+
+ //public void printCursor(Cursor c, int version){
+            Log.i(TAG, "Version number:" + String.valueOf(version));
+            Log.i(TAG, "Numbers of Column: " + String.valueOf(results.getColumnCount()));
+            for (int i = 0; i<results.getColumnCount(); i++){
+                Log.i("Name of Columnn"+ String.valueOf(i),results.getColumnName(i)) ;
+            }
+            if (results.moveToNext()) {
+                do {
+                    long id = results.getInt(idIndex);
+                    int numberOfRows = results.getCount();
+                    for (int i = 0; i < numberOfRows; i++) {
+                        if (i < id - 1)
+                            Log.i("ID",String.valueOf(id));
+                            Log.i("Message", results.getString(messageIndex));
+                            Log.i("Send or Recieve",results.getString(sOrRIndex));
+                    }
+                } while (results.moveToFirst());
+            }
+       // }
+
+     /**   public void printCursor(Cursor c, int version){
+            Log.i("Version Number",String.valueOf(version));
+            int numberOfColumns = c.getColumnCount();
+            Log.i("Number of Columns:",String.valueOf(numberOfColumns));
+            for(int i= 0;i<numberOfColumns;i++){
+                Log.i("Name of Column"+String.valueOf(i), c.getColumnName(i));
+            }
+            int numberOfRows= c.getCount();
+            Log.i("Number of Rows: ",String.valueOf(numberOfRows));
+            while(c.moveToNext()){
+                Log.v("ID",c.getString(idIndex);
+                Log.v("Message", c.getString(messageIndex));
+                Log.v("Send or Recieve",c.getString(sOrRIndex));
+            }
+            c.moveToFirst();
+        }*/
 
     }
 }
