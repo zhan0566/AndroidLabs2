@@ -21,9 +21,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -38,6 +35,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     BaseAdapter theAdapter;   //<<cannot be anonymous<<
     ArrayList<Message> messages = new ArrayList<>();
     public final static String TAG ="ChatRoomActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +56,11 @@ public class ChatRoomActivity extends AppCompatActivity {
             while (results.moveToNext()) {
                 long id = results.getInt(idIndex);
                 String message = results.getString(messageIndex);
-                boolean isSend = false;
+                boolean isSend = (1 == results.getInt(sOrRIndex));
                 messages.add(new Message(message, isSend, id));
-
             }
+
+        printCursor(results, version, idIndex, messageIndex, sOrRIndex);
 
 
         receive = findViewById(R.id.receiveButton);
@@ -104,7 +103,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 newRow.put(MyOpenHelper.COL_MESSAGE, whatIsTyped);
 
                 //Send or receive column:
-                newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 1);
+                newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 2);
 
                 long id = theDatabase.insert(MyOpenHelper.TABLE_NAME, null, newRow);
 
@@ -144,16 +143,6 @@ public class ChatRoomActivity extends AppCompatActivity {
                         // messages.remove(messages.size()-1);
                         messages.remove(position);
                         theAdapter.notifyDataSetChanged();
-                        /**Snackbar.make(submit, "You removed item # " + position, Snackbar.LENGTH_LONG)
-                                .setAction("Undo", (click4) -> {
-                                    messages.add(position, whatWasClicked);
-                                    theAdapter.notifyDataSetChanged();
-                                    //reinsert into the database
-                                    theDatabase.execSQL(String.format(" Insert into %s values (\"%d\", \"%s\", \"%d\" );",
-                                            MyOpenHelper.TABLE_NAME, whatWasClicked.getId(), whatWasClicked.getMessageTyped(), 1));
-
-                                })
-                                .show();*/
                         //delete from database:, returns number of rows deleted
                         theDatabase.delete(MyOpenHelper.TABLE_NAME,
                                 MyOpenHelper.COL_ID + " = ?", new String[]{Long.toString(whatWasClicked.getId())});
@@ -163,43 +152,27 @@ public class ChatRoomActivity extends AppCompatActivity {
             return true;
         });
 
+    }
+    public void printCursor(Cursor c, int version, int idIndex, int messageIndex, int sOrRIndex) {
+        c.moveToFirst();
+        Log.i(TAG, "Version Number" + String.valueOf(version));
+        int numberOfColumns = c.getColumnCount();
+        Log.i(TAG, "Number of Columns:" + String.valueOf(numberOfColumns));
+        for (int i = 0; i < numberOfColumns; i++) {
+            Log.i(TAG, "Name of Column " + String.valueOf(i) + c.getColumnName(i));
+        }
+        int numberOfRows = c.getCount();
+        Log.i(TAG, "Number of Rows: " + String.valueOf(numberOfRows));
 
- //public void printCursor(Cursor c, int version){
-            Log.i(TAG, "Version number:" + String.valueOf(version));
-            Log.i(TAG, "Numbers of Column: " + String.valueOf(results.getColumnCount()));
-            for (int i = 0; i<results.getColumnCount(); i++){
-                Log.i("Name of Columnn"+ String.valueOf(i),results.getColumnName(i)) ;
-            }
-            if (results.moveToNext()) {
-                do {
-                    long id = results.getInt(idIndex);
-                    int numberOfRows = results.getCount();
-                    for (int i = 0; i < numberOfRows; i++) {
-                        if (i < id - 1)
-                            Log.i("ID",String.valueOf(id));
-                            Log.i("Message", results.getString(messageIndex));
-                            Log.i("Send or Recieve",results.getString(sOrRIndex));
-                    }
-                } while (results.moveToFirst());
-            }
-       // }
-
-     /**   public void printCursor(Cursor c, int version){
-            Log.i("Version Number",String.valueOf(version));
-            int numberOfColumns = c.getColumnCount();
-            Log.i("Number of Columns:",String.valueOf(numberOfColumns));
-            for(int i= 0;i<numberOfColumns;i++){
-                Log.i("Name of Column"+String.valueOf(i), c.getColumnName(i));
-            }
-            int numberOfRows= c.getCount();
-            Log.i("Number of Rows: ",String.valueOf(numberOfRows));
-            while(c.moveToNext()){
-                Log.v("ID",c.getString(idIndex);
-                Log.v("Message", c.getString(messageIndex));
-                Log.v("Send or Recieve",c.getString(sOrRIndex));
-            }
-            c.moveToFirst();
-        }*/
-
+        if (numberOfRows > 0) {
+            Log.v(TAG, "ID " + c.getString(idIndex));
+            Log.v(TAG, "Message " + c.getString(messageIndex));
+            Log.v(TAG, "Send or Receive" + c.getString(sOrRIndex));
+        }
+        while (c.moveToNext()) {
+            Log.v(TAG, "ID " + c.getString(idIndex));
+            Log.v(TAG, "Message " + c.getString(messageIndex));
+            Log.v(TAG, "Send or Receive " + c.getString(sOrRIndex));
+        }
     }
 }
