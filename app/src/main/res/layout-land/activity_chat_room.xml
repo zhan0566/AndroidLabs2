@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonText3" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sendButton"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentBottom="true"/>
+
+    <EditText
+
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:ems="10"
+        android:hint="@string/Edit_message"
+        android:inputType="textPersonName"
+        android:layout_toRightOf="@id/submitButton"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:id="@+id/receiveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/editText"
+        android:layout_alignParentBottom="true"
+        android:text="@string/receiveButton" />
+
+    <ListView
+        android:id="@+id/myListView"
+        android:layout_width="300dp"
+        android:layout_height="358dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText" >
+
+        <FrameLayout
+            android:id="@+id/flContainer"
+            android:layout_width="295dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp" />
+    </ListView>
+
+
+</RelativeLayout>

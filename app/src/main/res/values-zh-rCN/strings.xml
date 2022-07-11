@@ -35,7 +35,7 @@
     <string name ="delete">你想删除它吗?</string>
     <string name ="rowSelected">被选的行是</string>
     <string name ="idSelected">被选的ID是</string>
-
+    <string name="hello_blank_fragment">短信在此</string>
 
 
 

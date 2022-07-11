@@ -3,10 +3,12 @@ package com.cst2335.androidlabs2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -35,14 +37,35 @@ public class ChatRoomActivity extends AppCompatActivity {
     BaseAdapter theAdapter;   //<<cannot be anonymous<<
     ArrayList<Message> messages = new ArrayList<>();
     public final static String TAG ="ChatRoomActivity";
+    boolean isTablet = false;
+
+    DetailsFragment detailFragment;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //load XML
-
         //Log.i(TAG, "In onCreate, creating the objects");
         setContentView(R.layout.activity_chat_room);
+
+        isTablet = findViewById(R.id.flContainer) != null;
+
+        if(isTablet) {
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.flContainer, new DetailsFragment());
+            fragmentTransaction.commit();
+        }
+       else{
+            Intent nextPage = new Intent(ChatRoomActivity.this,  EmptyActivity.class  );
+            startActivity(nextPage);
+
+        }
+
+
+
+
+
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
         Cursor results = theDatabase.rawQuery("Select * from " + MyOpenHelper.TABLE_NAME + ";", null);
@@ -121,8 +144,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         back.setOnClickListener(click -> {
             finish();
         });
-
-        rView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+        rView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+        //rView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             Message whatWasClicked = messages.get(position);
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ChatRoomActivity.this);
@@ -149,7 +172,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     })
                     //Show the dialog
                     .create().show();
-            return true;
+           // return true;
         });
 
     }
@@ -164,11 +187,11 @@ public class ChatRoomActivity extends AppCompatActivity {
         int numberOfRows = c.getCount();
         Log.i(TAG, "Number of Rows: " + String.valueOf(numberOfRows));
 
-        if (numberOfRows > 0) {
+       /** if (numberOfRows > 0) {
             Log.v(TAG, "ID " + c.getString(idIndex));
             Log.v(TAG, "Message " + c.getString(messageIndex));
             Log.v(TAG, "Send or Receive" + c.getString(sOrRIndex));
-        }
+        }*/
         while (c.moveToNext()) {
             Log.v(TAG, "ID " + c.getString(idIndex));
             Log.v(TAG, "Message " + c.getString(messageIndex));
