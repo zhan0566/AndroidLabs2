@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name"> Lab5</string>
+    <string name="app_name"> Lab6</string>
     <string name="ButtonText"> Click here</string>
     <string name="textMessage"> Look at my GUI </string>
     <string name="textMessage2"> Lab2 GUI</string>

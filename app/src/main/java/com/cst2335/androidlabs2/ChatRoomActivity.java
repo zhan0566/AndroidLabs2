@@ -144,7 +144,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         back.setOnClickListener(click -> {
             finish();
         });
-        rView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+        rView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
         //rView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             Message whatWasClicked = messages.get(position);
 
@@ -172,8 +172,17 @@ public class ChatRoomActivity extends AppCompatActivity {
                     })
                     //Show the dialog
                     .create().show();
-           // return true;
+            return true;
         });
+
+
+
+
+
+
+
+
+
 
     }
     public void printCursor(Cursor c, int version, int idIndex, int messageIndex, int sOrRIndex) {

@@ -30,10 +30,5 @@ public class EmptyActivity extends AppCompatActivity {
 
         }
 
-
-
-
-
-
     }
 }
