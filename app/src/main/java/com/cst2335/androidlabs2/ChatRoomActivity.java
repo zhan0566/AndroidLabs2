@@ -42,6 +42,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     DetailsFragment detailFragment;
     FragmentTransaction fragmentTransaction;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -175,16 +176,26 @@ public class ChatRoomActivity extends AppCompatActivity {
             return true;
         });
 
+        rView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            //rView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            Message whatWasClicked = messages.get(position);
 
 
+            isTablet = findViewById(R.id.flContainer) != null;
 
+            if(isTablet) {
+                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.flContainer, new DetailsFragment());
+                fragmentTransaction.commit();
+            }
+            else{
+                Intent nextPage = new Intent(ChatRoomActivity.this,  EmptyActivity.class  );
+                startActivity(nextPage);
 
-
-
-
-
-
+            }
+        });
     }
+
     public void printCursor(Cursor c, int version, int idIndex, int messageIndex, int sOrRIndex) {
         c.moveToFirst();
         Log.i(TAG, "Version Number" + String.valueOf(version));

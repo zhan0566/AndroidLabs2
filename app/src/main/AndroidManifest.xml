@@ -24,6 +24,7 @@
             android:name=".ChatRoomActivity"
             android:exported="true" />
         <activity android:name=".ProfileActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
