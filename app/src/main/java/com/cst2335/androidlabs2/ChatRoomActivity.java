@@ -52,7 +52,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         isTablet = findViewById(R.id.flContainer) != null;
 
-        if(isTablet) {
+       /** if(isTablet) {
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.flContainer, new DetailsFragment());
             fragmentTransaction.commit();
@@ -60,12 +60,7 @@ public class ChatRoomActivity extends AppCompatActivity {
        else{
             Intent nextPage = new Intent(ChatRoomActivity.this,  EmptyActivity.class  );
             startActivity(nextPage);
-
-        }
-
-
-
-
+        }*/
 
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
@@ -178,20 +173,27 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         rView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             //rView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString("key","message");
+            dataToPass.putInt("key", position);
+            dataToPass.putString("key","2");
+
+
             Message whatWasClicked = messages.get(position);
-
-
             isTablet = findViewById(R.id.flContainer) != null;
 
             if(isTablet) {
                 fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.flContainer, new DetailsFragment());
+                fragmentTransaction.replace(R.id.flContainer, detailFragment);
                 fragmentTransaction.commit();
             }
             else{
                 Intent nextPage = new Intent(ChatRoomActivity.this,  EmptyActivity.class  );
+                nextPage.putExtra("key", 2);
+                nextPage.putExtra("key",2);
+                nextPage.putExtra("key",2);
                 startActivity(nextPage);
-
             }
         });
     }

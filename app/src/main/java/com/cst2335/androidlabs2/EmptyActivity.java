@@ -5,10 +5,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 public class EmptyActivity extends AppCompatActivity {
 
-    boolean isTablet = false;
     DetailsFragment detailFragment;
     FragmentTransaction fragmentTransaction;
 
@@ -17,18 +17,11 @@ public class EmptyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty);
 
-        isTablet = findViewById(R.id.flContainer) != null;
-
-        if(isTablet) {
-            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.flContainer, new DetailsFragment());
-            fragmentTransaction.commit();
-        }
-        else{
-            Intent nextPage = new Intent(EmptyActivity.this,  ChatRoomActivity.class  );
-            startActivity(nextPage);
-
-        }
+        detailFragment = new DetailsFragment();
+        detailFragment.setArguments(getIntent().getBundleExtra("bundle"));
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.flContainer, detailFragment);
+        fragmentTransaction.commit();
 
     }
 }
