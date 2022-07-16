@@ -52,16 +52,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         isTablet = findViewById(R.id.flContainer) != null;
 
-       /** if(isTablet) {
-            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.flContainer, new DetailsFragment());
-            fragmentTransaction.commit();
-        }
-       else{
-            Intent nextPage = new Intent(ChatRoomActivity.this,  EmptyActivity.class  );
-            startActivity(nextPage);
-        }*/
-
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
         Cursor results = theDatabase.rawQuery("Select * from " + MyOpenHelper.TABLE_NAME + ";", null);
@@ -165,6 +155,10 @@ public class ChatRoomActivity extends AppCompatActivity {
                         //delete from database:, returns number of rows deleted
                         theDatabase.delete(MyOpenHelper.TABLE_NAME,
                                 MyOpenHelper.COL_ID + " = ?", new String[]{Long.toString(whatWasClicked.getId())});
+                        // remove fragment
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.remove(detailFragment);
+                        fragmentTransaction.commit();
                     })
                     //Show the dialog
                     .create().show();
@@ -174,25 +168,25 @@ public class ChatRoomActivity extends AppCompatActivity {
         rView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
             //rView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
-            Bundle dataToPass = new Bundle();
-            dataToPass.putString("key","message");
-            dataToPass.putInt("key", position);
-            dataToPass.putString("key","2");
-
-
             Message whatWasClicked = messages.get(position);
+
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString("message",whatWasClicked.getMessageTyped());
+            dataToPass.putLong("id", whatWasClicked.id);
+            dataToPass.putBoolean("isSend", whatWasClicked.getIsSend());
+
             isTablet = findViewById(R.id.flContainer) != null;
 
             if(isTablet) {
+                detailFragment = new DetailsFragment();
+                detailFragment.setArguments(dataToPass);
                 fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.flContainer, detailFragment);
                 fragmentTransaction.commit();
             }
             else{
                 Intent nextPage = new Intent(ChatRoomActivity.this,  EmptyActivity.class  );
-                nextPage.putExtra("key", 2);
-                nextPage.putExtra("key",2);
-                nextPage.putExtra("key",2);
+                nextPage.putExtra("bundle", dataToPass);
                 startActivity(nextPage);
             }
         });

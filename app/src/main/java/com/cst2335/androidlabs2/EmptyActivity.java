@@ -22,6 +22,5 @@ public class EmptyActivity extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.flContainer, detailFragment);
         fragmentTransaction.commit();
-
     }
 }

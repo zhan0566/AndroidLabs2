@@ -55,5 +55,4 @@ public class DetailsFragment extends Fragment {
 
         return newView;
     }
-
 }
