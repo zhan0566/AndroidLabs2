@@ -36,7 +36,9 @@
     <string name ="rowSelected">被选的行是</string>
     <string name ="idSelected">被选的ID是</string>
     <string name="hello_blank_fragment">短信在此</string>
-
+    <string name="choice1">选择1</string>
+    <string name="choice2">选择2</string>
+    <string name="choice3">选择3</string>
 
 
 </resources>

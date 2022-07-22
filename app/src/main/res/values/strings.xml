@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name"> Lab6</string>
+    <string name="app_name"> Lab7</string>
     <string name="ButtonText"> Click here</string>
     <string name="textMessage"> Look at my GUI </string>
     <string name="textMessage2"> Lab2 GUI</string>
@@ -36,6 +36,9 @@
     <string name="idSelected">The database id is </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Message here</string>
+    <string name="choice1">Choice1</string>
+    <string name="choice2">Choice2</string>
+    <string name="choice3">Choice3</string>
 
 
 </resources>
