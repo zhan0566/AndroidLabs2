@@ -44,7 +44,10 @@ public class TestToolbar extends AppCompatActivity {
                 message = "You clicked on the overflow menu";
                 break;
         }
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
+        if ( message != null ) {
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        }
         return true;
     }
 

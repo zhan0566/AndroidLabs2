@@ -8,8 +8,6 @@
         android:orderInCategory="50"
         app:showAsAction="always"/>
 
-
-
     <item android:id="@+id/choice2"
         android:title="@string/choice2"
         android:icon="@drawable/hamburger"
@@ -21,6 +19,5 @@
         android:icon="@drawable/cocktail"
         android:orderInCategory="150"
         app:showAsAction="never" />
-
 
 </menu>
