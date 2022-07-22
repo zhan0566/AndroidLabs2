@@ -75,7 +75,6 @@ public class ProfileActivity extends AppCompatActivity {
         toolBarButton.setOnClickListener(clk -> {
             Intent theOtherPage = new Intent(ProfileActivity.this,  TestToolbar.class);
             startActivity(theOtherPage);
-
             // finish();
         });
 
