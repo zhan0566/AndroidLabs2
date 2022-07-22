@@ -71,6 +71,13 @@ public class ProfileActivity extends AppCompatActivity {
 
             // finish();
         });
+        Button toolBarButton = findViewById(R.id.toolbar_button);
+        toolBarButton.setOnClickListener(clk -> {
+            Intent theOtherPage = new Intent(ProfileActivity.this,  TestToolbar.class);
+            startActivity(theOtherPage);
+
+            // finish();
+        });
 
     }
     @Override //screen is visible but not responding

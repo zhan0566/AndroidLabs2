@@ -39,6 +39,7 @@
     <string name="choice1">选择1</string>
     <string name="choice2">选择2</string>
     <string name="choice3">选择3</string>
+    <string name="GoToToolBar">前往滚动栏页面</string>
 
 
 </resources>
