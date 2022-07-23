@@ -17,7 +17,7 @@ public class TestToolbar extends AppCompatActivity {
         setContentView(R.layout.activity_test_toolbar);
 
         Toolbar tBar =(Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(tBar);
+       //setSupportActionBar(tBar);
     }
 
     @Override
