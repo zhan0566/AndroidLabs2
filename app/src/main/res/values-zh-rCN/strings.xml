@@ -40,6 +40,7 @@
     <string name="choice2">选择2</string>
     <string name="choice3">选择3</string>
     <string name="GoToToolBar">前往滚动栏页面</string>
-
+     <string name="open">开</string>
+     <string name="close">关</string>
 
 </resources>

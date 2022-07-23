@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/chat_item"
+        android:title="Chat Page" />
+
+
+    <item
+        android:id="@+id/weatherForcast_item"
+        android:title="Weather Forcast" />
+
+    <item
+        android:id="@+id/goBackLogin_item"
+        android:title="Go back to login" />
+</menu>

@@ -40,7 +40,8 @@
     <string name="choice2">Choice2</string>
     <string name="choice3">Choice3</string>
     <string name="GoToToolBar">Go to toolbar page</string>
-
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 
 </resources>
