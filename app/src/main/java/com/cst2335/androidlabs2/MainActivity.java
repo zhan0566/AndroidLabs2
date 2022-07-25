@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
       public final static String TAG ="MainActivity";
       public final static String PREFERENCES_FILE = "MyData";
       EditText editEmail;
+      EditText editPassword;
 
     @Override
     protected void onPause() {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences  prefs = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor writer = prefs.edit();
         writer.putString("ReserveName", editEmail.getText().toString());
+        writer.putString("ReserveName1",editPassword.getText().toString());
         writer.apply(); //save to disk
     }
 
@@ -47,12 +49,14 @@ public class MainActivity extends AppCompatActivity {
       //  reverseMessage.setText(previous);
 
         editEmail = findViewById(R.id.editEmail);
+        editPassword = findViewById(R.id.editPassword);
 
         Button login = findViewById(R.id.login);
         login.setOnClickListener(clk -> {
             Intent nextPage = new Intent(MainActivity.this,  ProfileActivity.class  );
             //Make the transition:
             nextPage.putExtra("email",editEmail.getText().toString());
+            nextPage.putExtra("password",editPassword.getText().toString());
             startActivity(nextPage);
 
            // finish();

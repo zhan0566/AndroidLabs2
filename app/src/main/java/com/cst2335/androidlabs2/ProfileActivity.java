@@ -57,8 +57,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         Intent fromMain = getIntent();
         EditText email = findViewById(R.id.editTextTextPersonName4);
+        EditText name = findViewById(R.id.editTextTextPersonName2);
         String input = fromMain.getStringExtra("email");
+        String input1 = fromMain.getStringExtra("password");
         email.setText(input);
+        name.setText(input1);
 
         Button back = findViewById( R.id.intent_return_button);
         back.setOnClickListener(  click ->  { finish(); } );
