@@ -203,11 +203,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         int numberOfRows = c.getCount();
         Log.i(TAG, "Number of Rows: " + String.valueOf(numberOfRows));
 
-       /** if (numberOfRows > 0) {
-            Log.v(TAG, "ID " + c.getString(idIndex));
-            Log.v(TAG, "Message " + c.getString(messageIndex));
-            Log.v(TAG, "Send or Receive" + c.getString(sOrRIndex));
-        }*/
         while (c.moveToNext()) {
             Log.v(TAG, "ID " + c.getString(idIndex));
             Log.v(TAG, "Message " + c.getString(messageIndex));
